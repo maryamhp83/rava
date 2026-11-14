@@ -37,3 +37,20 @@ export interface AlertScreenProps {
 export interface LoadingScreenProps {
   className?: string;
 }
+
+export interface MainLayoutProps {
+  className?: string;
+  children: ReactNode;
+  mode?: "auth-only" | "disabled" | "no-auth-only";
+}
+
+export interface DialogProps {
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}
+
+export interface NavbarStateProps {
+  className?: string;
+  open: boolean;
+  onOpenChange?: (open: boolean) => void;
+}
