@@ -6,7 +6,7 @@ import { cn } from "cn";
 import { DirectionProvider } from "@/component/ui/direction";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/component/ui/sonner";
-import QueryClientProvider from "@/component/provider/queryClientProvider";
+import QueryClientProvider from "@/component/queryClientProvider";
 import { TooltipProvider } from "@/component/ui/tooltip";
 
 const appName = "راوا";
