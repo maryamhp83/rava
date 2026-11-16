@@ -54,3 +54,8 @@ export interface NavbarStateProps {
   open: boolean;
   onOpenChange?: (open: boolean) => void;
 }
+
+export interface StaticBreadCrumbProps {
+  className?: string;
+  values: string[];
+}
