@@ -84,12 +84,12 @@ export default function Navbar({
         )}
         onClick={() => onOpenChange?.(!open)}
       />
-
       <nav
         data-open={!open}
+        dir="ltr"
         className={cn(
-          "border-l border-input bg-background h-dvh overflow-auto flex flex-col transition-all duration-500 z-30",
-          "lg:static fixed top-0 right-0 lg:data-[open=false]:w-auto data-[open=false]:w-0 lg:data-[open=true]:w-auto data-[open=true]:w-fit",
+          "border-r border-input bg-background h-dvh overflow-auto flex flex-col transition-all duration-500 z-30",
+          "lg:static fixed top-0 left-0 lg:data-[open=false]:w-auto data-[open=false]:w-0 lg:data-[open=true]:w-auto data-[open=true]:w-fit",
           className,
         )}
       >
