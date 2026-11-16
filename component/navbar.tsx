@@ -88,8 +88,8 @@ export default function Navbar({
       <nav
         data-open={!open}
         className={cn(
-          "border-l border-input bg-background h-dvh transition-all duration-500 z-30 lg:flex flex-col lg:overflow-visible overflow-hidden",
-          "lg:static fixed top-0 right-0 lg:data-[open=false]:w-auto data-[open=false]:w-0 lg:data-[open=true]:w-3xl data-[open=true]:w-fit",
+          "border-l border-input bg-background h-dvh overflow-auto flex flex-col transition-all duration-500 z-30",
+          "lg:static fixed top-0 right-0 lg:data-[open=false]:w-auto data-[open=false]:w-0 lg:data-[open=true]:w-auto data-[open=true]:w-fit",
           className,
         )}
       >
@@ -113,6 +113,7 @@ export default function Navbar({
             </div>
           )}
         </Link>
+
         <div className="space-y-1 p-4 flex flex-col flex-1 h-full overflow-auto">
           {navbarData.map((item, index) => (
             <Button
