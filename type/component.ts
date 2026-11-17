@@ -59,3 +59,49 @@ export interface StaticBreadCrumbProps {
   className?: string;
   values: string[];
 }
+
+export interface StatusCardProps {
+  title: string;
+  icon: {
+    element: ReactNode;
+    color: `text-${string}`;
+  };
+  className?: string;
+  amount: number;
+  unit?: "toman" | "people" | "none";
+}
+
+export interface SaleExpensesCardProps {
+  className?: string;
+  data: {
+    month: string;
+    sales: number;
+    expenses: number;
+  }[];
+}
+
+export interface PageInfoCardProps {
+  className?: string;
+  title: string;
+  subTitle: string;
+  cta?: ReactNode;
+}
+
+export interface TripsStatusCardProps {
+  className?: string;
+  data: {
+    done: number;
+    cancled: number;
+    inProgress: number;
+  };
+}
+
+export interface LatestTripsTableCardProps {
+  className?: string;
+  data: {
+    fullName: string;
+    driverFullName: string;
+    price: number;
+    status: "done" | "pending" | "cancled";
+  }[];
+}
