@@ -17,9 +17,18 @@ import {
   Settings,
   PanelRightOpen,
   PanelLeftClose,
+  PhoneCall,
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { usePathname } from "next/navigation";
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
+import { toast } from "sonner";
 
 export const navbarData: {
   title: string;
@@ -89,7 +98,7 @@ export default function Navbar({
         dir="ltr"
         className={cn(
           "border-r border-input bg-background h-dvh overflow-auto flex flex-col transition-all duration-500 z-30",
-          "lg:static fixed top-0 left-0 lg:data-[open=false]:w-auto data-[open=false]:w-0 lg:data-[open=true]:w-auto data-[open=true]:w-fit",
+          "lg:static fixed top-0 left-0 lg:data-[open=false]:w-auto data-[open=false]:w-0 lg:data-[open=true]:w-80 data-[open=true]:w-fit",
           className,
         )}
       >
@@ -113,7 +122,6 @@ export default function Navbar({
             </div>
           )}
         </Link>
-
         <div className="space-y-1 p-4 flex flex-col flex-1 h-full overflow-auto">
           {navbarData.map((item, index) => (
             <Button
@@ -130,7 +138,31 @@ export default function Navbar({
             />
           ))}
         </div>
-        <div className="p-4 border-t border-input h-18.75 lg:block hidden">
+        <div className="p-4 border-t border-input lg:block hidden space-y-3">
+          <Card
+            data-open={!open}
+            className="lg:data-[open=false]:hidden data-[open=false]:flex"
+          >
+            <CardHeader>
+              <div className="size-9 text-primary bg-current/10 flex items-center justify-center rounded-md">
+                <PhoneCall className="size-4" />
+              </div>
+              <CardTitle>نیاز به راهنمایی دارید؟</CardTitle>
+              <CardDescription>با پشتیبانی راوا در تماس باشید.</CardDescription>
+            </CardHeader>
+            <CardFooter>
+              <Button
+                variant={"secondary"}
+                className={"w-full"}
+                onClick={() =>
+                  toast.error("فعلا امکان تماس با پشتیبانی وجود ندارد.")
+                }
+              >
+                تماس با پشتیبانی
+              </Button>
+            </CardFooter>
+          </Card>
+
           <Button
             onClick={() => onOpenChange?.(!open)}
             className={!open ? "w-full justify-start" : ""}
