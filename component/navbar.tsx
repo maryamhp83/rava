@@ -37,42 +37,32 @@ export const navbarData: {
 }[] = [
   {
     title: "داشبورد",
-    icon: <LayoutDashboard size={18} />,
+    icon: <LayoutDashboard />,
     href: "/",
   },
   {
     title: "مشتریان",
-    icon: <Users size={18} />,
+    icon: <Users />,
     href: "/customers",
   },
   {
     title: "رانندگان",
-    icon: <PersonStanding size={18} />,
+    icon: <PersonStanding />,
     href: "/drivers",
   },
   {
-    title: "خودروها",
-    icon: <CarFront size={18} />,
-    href: "/vehicles",
-  },
-  {
     title: "سفرها",
-    icon: <Route size={18} />,
+    icon: <Route />,
     href: "/trips",
   },
   {
     title: "هزینه‌ها",
-    icon: <CreditCard size={18} />,
+    icon: <CreditCard />,
     href: "/expenses",
   },
   {
-    title: "گزارش‌ها",
-    icon: <ChartNoAxesColumn size={18} />,
-    href: "/reports",
-  },
-  {
     title: "تنظیمات",
-    icon: <Settings size={18} />,
+    icon: <Settings />,
     href: "/settings",
   },
 ];

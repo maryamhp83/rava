@@ -23,6 +23,7 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "../ui/empty";
+import FullNameBadge from "../fullNameBadge";
 
 export default function LatestTripsTableCard({
   className,
@@ -71,20 +72,10 @@ export default function LatestTripsTableCard({
             {data.map((item, index) => (
               <TableRow key={index}>
                 <TableCell>
-                  <div className="flex items-center justify-start gap-2">
-                    <div className="size-8 text-xs font-light bg-input/50 rounded-md flex items-center justify-center">
-                      {getInitials(item.fullName)}
-                    </div>
-                    {item.fullName}
-                  </div>
+                  <FullNameBadge fullName={item.fullName} />
                 </TableCell>
                 <TableCell>
-                  <div className="flex items-center justify-start gap-2">
-                    <div className="size-8 text-xs font-light bg-input/50 rounded-md flex items-center justify-center">
-                      {getInitials(item.driverFullName)}
-                    </div>
-                    {item.driverFullName}
-                  </div>
+                  <FullNameBadge fullName={item.driverFullName} />
                 </TableCell>
                 <TableCell>{formatPersianNumber(item.price)} تومان</TableCell>
                 <TableCell>

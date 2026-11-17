@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { Customer } from "./general";
 
 export interface ChildrenOnlyProps {
   children: ReactNode;
@@ -104,4 +105,26 @@ export interface LatestTripsTableCardProps {
     price: number;
     status: "done" | "pending" | "cancled";
   }[];
+}
+
+export interface TitleOnlyProps {
+  title: string;
+}
+
+interface FilterableTableProps<T> {
+  className?: string;
+  data: T[];
+}
+
+export type CustomersFilterableTableProps = FilterableTableProps<Customer>;
+
+export interface FullNameBadgeProps {
+  fullName: string;
+  className?: string;
+}
+
+export interface DialogProps {
+  refetch?: () => void;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }

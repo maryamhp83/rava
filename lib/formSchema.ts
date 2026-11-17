@@ -1,4 +1,8 @@
 import { z } from "zod";
+import {
+  verifyIranianNationalId,
+  isPhoneNumberValid,
+} from "@persian-tools/persian-tools";
 
 export const loginFormSchema = z.object({
   email: z
@@ -53,6 +57,32 @@ export const settingsFormSchema = z.object({
     .string()
     .min(8, "رمز عبور باید حداقل ۸ کاراکتر داشته باشد.")
     .optional(),
+});
+
+export const addNewCustomerFormSchema = z.object({
+  fullName: z
+    .string()
+    .min(1, "نام و نام خانوادگی الزامی است.")
+    .min(3, "نام و نام خانوادگی باید حداقل ۳ کاراکتر باشد."),
+  nationalCode: z
+    .string()
+    .min(1, "کد ملی الزامی است.")
+    .refine(
+      (value) => verifyIranianNationalId(value),
+      "کد ملی وارد شده معتبر نیست.",
+    ),
+  phoneNumber: z
+    .string()
+    .min(1, "شماره تلفن الزامی است.")
+    .refine(
+      (value) => isPhoneNumberValid(value),
+      "شماره تلفن وارد شده معتبر نیست.",
+    ),
+  address: z
+    .string()
+    .trim()
+    .min(10, "آدرس باید حداقل ۱۰ کاراکتر باشد.")
+    .max(300, "آدرس نمی‌تواند بیشتر از ۳۰۰ کاراکتر باشد."),
 });
 
 export type signupFormType = z.infer<typeof signupFormSchema>;
