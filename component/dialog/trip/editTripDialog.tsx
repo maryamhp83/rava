@@ -32,10 +32,12 @@ import {
   addNewTripFormSchema,
   type addNewTripFormType,
 } from "@/lib/formSchema";
-import { sleep } from "@/lib/util";
 import type { EditTripDialogProps } from "@/type/component";
+import { editTrip } from "@/lib/api/trips";
+import { useState } from "react";
 
 export function EditTripDialog({ data, refetch }: EditTripDialogProps) {
+  const [open, onOpenChange] = useState(false);
   const form = useForm<addNewTripFormType>({
     resolver: zodResolver(addNewTripFormSchema),
     defaultValues: {
@@ -48,10 +50,11 @@ export function EditTripDialog({ data, refetch }: EditTripDialogProps) {
   });
 
   const mutation = useMutation({
-    mutationFn: async (formData: addNewTripFormType) => {
-      await sleep(3000);
-      return formData;
-    },
+    mutationFn: async (data2: addNewTripFormType) =>
+      editTrip(data.id, {
+        ...data2,
+        price: Number(data2.price),
+      }),
   });
 
   const onSubmit: SubmitHandler<addNewTripFormType> = async (formData) => {
@@ -63,6 +66,7 @@ export function EditTripDialog({ data, refetch }: EditTripDialogProps) {
       });
 
       refetch?.();
+      onOpenChange(false);
     } catch {
       toast.error("خطا در ویرایش سفر", {
         description: "ذخیره تغییرات انجام نشد. دوباره تلاش کنید.",
@@ -71,7 +75,14 @@ export function EditTripDialog({ data, refetch }: EditTripDialogProps) {
   };
 
   return (
-    <Dialog>
+    <Dialog
+      open={open}
+      onOpenChange={(open) => {
+        if (!form.formState.isSubmitting) {
+          onOpenChange(open);
+        }
+      }}
+    >
       <DialogTrigger
         render={
           <Button size="icon" variant="outline">

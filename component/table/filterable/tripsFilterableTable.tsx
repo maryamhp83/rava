@@ -34,6 +34,7 @@ import { Select } from "@/component/ui/select";
 
 export function TripsFilterableTable({
   data,
+  refetch,
   className,
 }: TripsFilterableTableProps) {
   const [searchStr, setSearchStr] = useState("");
@@ -164,8 +165,8 @@ export function TripsFilterableTable({
 
                   <TableCell>
                     <div className="flex items-center gap-2">
-                      <EditTripDialog data={trip} />
-                      <DeleteTripDialog data={trip} />
+                      <EditTripDialog data={trip} refetch={refetch} />
+                      <DeleteTripDialog data={trip} refetch={refetch} />
                     </div>
                   </TableCell>
                 </TableRow>

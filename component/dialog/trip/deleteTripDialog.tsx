@@ -15,15 +15,12 @@ import {
   DialogTrigger,
 } from "@/component/ui/dialog";
 import { Button } from "@/component/ui/button";
-
-import { sleep } from "@/lib/util";
 import type { DeleteTripDialogProps } from "@/type/component";
+import { deleteTrip } from "@/lib/api/trips";
 
 export function DeleteTripDialog({ data, refetch }: DeleteTripDialogProps) {
   const mutation = useMutation({
-    mutationFn: async () => {
-      await sleep(3000);
-    },
+    mutationFn: () => deleteTrip(data.id),
   });
 
   const onDelete = async () => {

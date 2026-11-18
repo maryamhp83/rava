@@ -32,8 +32,8 @@ import {
   addNewTripFormSchema,
   type addNewTripFormType,
 } from "@/lib/formSchema";
-import { sleep } from "@/lib/util";
 import { DialogProps } from "@/type/component";
+import { createTrip } from "@/lib/api/trips";
 
 export function AddNewTripDialog({ refetch }: DialogProps) {
   const [open, setOpen] = useState(false);
@@ -49,10 +49,11 @@ export function AddNewTripDialog({ refetch }: DialogProps) {
   });
 
   const mutation = useMutation({
-    mutationFn: async (data: addNewTripFormType) => {
-      await sleep(3000);
-      return data;
-    },
+    mutationFn: (data: addNewTripFormType) =>
+      createTrip({
+        ...data,
+        price: Number(data.price),
+      }),
   });
 
   const onSubmit: SubmitHandler<addNewTripFormType> = async (data) => {
