@@ -81,7 +81,7 @@ export default function LatestTripsTableCard({
                 <TableCell>
                   <Badge
                     className={cn(
-                      "bg-current/5",
+                      "bg-current/10",
                       item.status === "done"
                         ? "text-green-500"
                         : item.status === "cancled"

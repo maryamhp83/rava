@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
-import { Truck } from "lucide-react";
+import { Circle, Truck } from "lucide-react";
 import { DriversFilterableTableProps } from "@/type/component";
 import { cn } from "cn";
 import { Card, CardHeader, CardTitle } from "@/component/ui/card";
@@ -128,10 +128,14 @@ export default function DriversFilterableTable({
 
                   <TableCell>
                     <Badge
-                      variant={
-                        item.status === "active" ? "default" : "secondary"
-                      }
+                      className={cn(
+                        "bg-current/10",
+                        item.status === "active"
+                          ? "text-green-500"
+                          : "text-red-500",
+                      )}
                     >
+                      <Circle className="fill-current ml-1" />
                       {item.status === "active" ? "فعال" : "غیرفعال"}
                     </Badge>
                   </TableCell>
