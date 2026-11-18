@@ -116,8 +116,6 @@ interface FilterableTableProps<T> {
   data: T[];
 }
 
-export type CustomersFilterableTableProps = FilterableTableProps<Customer>;
-
 export interface FullNameBadgeProps {
   fullName: string;
   className?: string;
@@ -128,3 +126,12 @@ export interface DialogProps {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
 }
+
+export interface ActionDialogProps<T> extends DialogProps {
+  data: T;
+}
+
+// -----------------------------------------------------------------------------------------
+export type CustomersFilterableTableProps = FilterableTableProps<Customer>;
+
+export type EditCustomerDialogProps = ActionDialogProps<Customer>;

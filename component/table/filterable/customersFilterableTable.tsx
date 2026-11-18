@@ -23,6 +23,7 @@ import {
 } from "@/component/ui/table";
 import FullNameBadge from "@/component/fullNameBadge";
 import { persianDateFormatter } from "@/lib/date";
+import EditCustomerDialog from "@/component/dialog/customer/editCustomerDialog";
 
 export default function CustomersFilterableTable({
   data,
@@ -115,7 +116,7 @@ export default function CustomersFilterableTable({
                     {persianDateFormatter.format(new Date(item.createdAt))}
                   </TableCell>
                   <TableCell className="flex items-center justify-end gap-2">
-                    IDK
+                    <EditCustomerDialog data={item} />
                   </TableCell>
                 </TableRow>
               ))}
