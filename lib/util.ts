@@ -7,3 +7,6 @@ export function getInitials(name: string): string {
     .join("")
     .toUpperCase();
 }
+
+export const sleep = (ms: number) =>
+  new Promise((resolve) => setTimeout(resolve, ms));

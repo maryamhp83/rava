@@ -86,6 +86,7 @@ export const addNewCustomerFormSchema = z.object({
 });
 
 export type signupFormType = z.infer<typeof signupFormSchema>;
+export type addNewCustomerFormType = z.infer<typeof addNewCustomerFormSchema>;
 export type loginFormType = z.infer<typeof loginFormSchema>;
 export type recoveryFormType = z.infer<typeof recoveryFormSchema>;
 export type settingsFormType = z.infer<typeof settingsFormSchema>;

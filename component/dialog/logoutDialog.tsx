@@ -57,7 +57,7 @@ export default function LogoutDialog({ open, onOpenChange }: DialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
+      <DialogContent showCloseButton={false}>
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             از حساب کاربری خود خارج می‌شوید؟
