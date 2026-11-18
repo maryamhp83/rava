@@ -6,6 +6,7 @@ import {
   AlertDescription,
   AlertTitle,
 } from "@/component/ui/alert";
+import { cn } from "cn";
 
 export default function AlertScreen({
   title,
