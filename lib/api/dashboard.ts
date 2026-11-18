@@ -16,10 +16,9 @@ export default async function getDashboardInfo() {
   const totalDrivers = driversFetch.total;
   const totalTrips = tripsFetch.total;
 
-  const totalIncome = tripsFetch.rows.reduce(
-    (total, item) => total + item.price,
-    0,
-  );
+  const totalIncome = tripsFetch.rows
+    .filter((item) => item.status === "done")
+    .reduce((total, item) => total + item.price, 0);
 
   const totalExpenses = expensesFetch.rows.reduce(
     (total, item) => total + item.price,
