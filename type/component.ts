@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Trip, Customer, Driver } from "./general";
+import { Expense, Trip, Customer, Driver } from "./general";
 
 export interface ChildrenOnlyProps {
   children: ReactNode;
@@ -135,11 +135,14 @@ export interface ActionDialogProps<T> extends DialogProps {
 export type CustomersFilterableTableProps = FilterableTableProps<Customer>;
 export type DriversFilterableTableProps = FilterableTableProps<Driver>;
 export type TripsFilterableTableProps = FilterableTableProps<Trip>;
+export type ExpensesFilterableTableProps = FilterableTableProps<Expense>;
 
 export type EditTripDialogProps = ActionDialogProps<Trip>;
 export type EditDriverDialogProps = ActionDialogProps<Driver>;
 export type EditCustomerDialogProps = ActionDialogProps<Customer>;
+export type EditExpenseDialogProps = ActionDialogProps<Expense>;
 
 export type DeleteTripDialogProps = ActionDialogProps<Trip>;
 export type DeleteDriverDialogProps = ActionDialogProps<Driver>;
 export type DeleteCustomerDialogProps = ActionDialogProps<Customer>;
+export type DeleteExpenseDialogProps = ActionDialogProps<Expense>;

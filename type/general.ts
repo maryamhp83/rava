@@ -31,3 +31,12 @@ export interface Trip {
   status: "done" | "pending" | "cancled";
   route: string;
 }
+
+export interface Expense {
+  id: string;
+  createdAt: string;
+
+  name: string;
+  price: number;
+  description: string;
+}

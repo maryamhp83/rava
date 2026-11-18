@@ -162,6 +162,26 @@ export const addNewTripFormSchema = z.object({
   status: z.enum(["done", "pending", "cancled"]),
 });
 
+export const addNewExpenseFormSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(1, "عنوان هزینه الزامی است.")
+    .min(3, "عنوان هزینه باید حداقل ۳ کاراکتر باشد.")
+    .max(100, "عنوان هزینه نمی‌تواند بیشتر از ۱۰۰ کاراکتر باشد."),
+
+  price: z.coerce
+    .number({ message: "مبلغ باید عدد باشد." })
+    .positive("مبلغ باید بیشتر از صفر باشد."),
+
+  description: z
+    .string()
+    .trim()
+    .min(5, "توضیحات باید حداقل ۵ کاراکتر باشد.")
+    .max(300, "توضیحات نمی‌تواند بیشتر از ۳۰۰ کاراکتر باشد."),
+});
+
+export type addNewExpenseFormType = z.infer<typeof addNewExpenseFormSchema>;
 export type addNewTripFormType = z.infer<typeof addNewTripFormSchema>;
 export type addNewDriverFormType = z.infer<typeof addNewDriverFormSchema>;
 export type signupFormType = z.infer<typeof signupFormSchema>;
