@@ -30,6 +30,7 @@ import DeleteDriverDialog from "@/component/dialog/driver/deleteDriverDialog";
 export default function DriversFilterableTable({
   data,
   className,
+  refetch,
 }: DriversFilterableTableProps) {
   const [searchStr, setSearchStr] = useState("");
   const normalizedSearch = searchStr.trim().toLowerCase();
@@ -145,8 +146,8 @@ export default function DriversFilterableTable({
                   </TableCell>
 
                   <TableCell className="flex items-center justify-end gap-2">
-                    <EditDriverDialog data={item} />
-                    <DeleteDriverDialog data={item} />
+                    <EditDriverDialog data={item} refetch={refetch} />
+                    <DeleteDriverDialog data={item} refetch={refetch} />
                   </TableCell>
                 </TableRow>
               ))}

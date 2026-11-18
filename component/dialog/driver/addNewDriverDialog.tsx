@@ -22,7 +22,6 @@ import { useMutation } from "@tanstack/react-query";
 import { DialogProps } from "@/type/component";
 import { useState } from "react";
 import { toast } from "sonner";
-import { sleep } from "@/lib/util";
 import {
   Select,
   SelectContent,
@@ -30,6 +29,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/component/ui/select";
+import { createDriver } from "@/lib/api/drivers";
 
 export default function AddNewDriverDialog({ refetch }: DialogProps) {
   const [open, onOpenChange] = useState(false);
@@ -48,7 +48,7 @@ export default function AddNewDriverDialog({ refetch }: DialogProps) {
   });
 
   const mutation = useMutation({
-    mutationFn: (data: addNewDriverFormType) => sleep(3000),
+    mutationFn: (data: addNewDriverFormType) => createDriver(data),
   });
 
   const onSubmit: SubmitHandler<addNewDriverFormType> = async (data) => {

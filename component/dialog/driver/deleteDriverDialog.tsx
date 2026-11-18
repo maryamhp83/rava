@@ -16,7 +16,7 @@ import { useMutation } from "@tanstack/react-query";
 import { DeleteDriverDialogProps } from "@/type/component";
 import { useState } from "react";
 import { toast } from "sonner";
-import { sleep } from "@/lib/util";
+import { deleteDriver } from "@/lib/api/drivers";
 
 export default function DeleteDriverDialog({
   refetch,
@@ -25,7 +25,7 @@ export default function DeleteDriverDialog({
   const [open, onOpenChange] = useState(false);
 
   const mutation = useMutation({
-    mutationFn: () => sleep(3000),
+    mutationFn: () => deleteDriver(data.id),
   });
 
   const onDelete = async () => {
