@@ -1,15 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { digitsEnToFa } from "@persian-tools/persian-tools";
 import { List } from "lucide-react";
-
 import { cn } from "cn";
-
 import { Card, CardHeader, CardTitle } from "@/component/ui/card";
-
 import { Input } from "@/component/ui/input";
-
 import {
   Empty,
   EmptyDescription,
@@ -17,12 +12,10 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/component/ui/empty";
-
 import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
   TableHeader,
   TableRow,
 } from "@/component/ui/table";
@@ -36,6 +29,7 @@ import { formatPersianNumber } from "@/lib/number";
 export function ExpensesFilterableTable({
   className,
   data,
+  refetch,
 }: ExpensesFilterableTableProps) {
   const [searchStr, setSearchStr] = useState("");
 
@@ -120,8 +114,8 @@ export function ExpensesFilterableTable({
 
                 <TableCell>
                   <div className="flex items-center gap-2 justify-end">
-                    <EditExpenseDialog data={item} />
-                    <DeleteExpenseDialog data={item} />
+                    <EditExpenseDialog data={item} refetch={refetch} />
+                    <DeleteExpenseDialog data={item} refetch={refetch} />
                   </div>
                 </TableCell>
               </TableRow>

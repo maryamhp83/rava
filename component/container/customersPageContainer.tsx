@@ -14,8 +14,7 @@ export default function CustomersPageContainer({ title }: TitleOnlyProps) {
     queryKey: ["customers"],
   });
 
-  const queryData = query.data;
-  const customers = queryData?.rows ?? [];
+  const customers = query.data?.rows ?? [];
 
   return (
     <ApiLoader
@@ -32,9 +31,9 @@ export default function CustomersPageContainer({ title }: TitleOnlyProps) {
       <CustomersFilterableTable
         refetch={query.refetch}
         data={customers.map((item) => ({
+          ...item,
           id: item.$id,
           createdAt: item.$createdAt,
-          ...item,
         }))}
       />
     </ApiLoader>

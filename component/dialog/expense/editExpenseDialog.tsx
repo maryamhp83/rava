@@ -6,8 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { Loader2, Pen, Save } from "lucide-react";
 import { toast } from "sonner";
-import { z } from "zod";
-
 import {
   Dialog,
   DialogClose,
@@ -22,22 +20,17 @@ import { Button } from "@/component/ui/button";
 import { Field, FieldError, FieldLabel } from "@/component/ui/field";
 import { Input } from "@/component/ui/input";
 import { Textarea } from "@/component/ui/textarea";
-
 import {
   addNewExpenseFormSchema,
   type addNewExpenseFormType,
 } from "@/lib/formSchema";
-import { sleep } from "@/lib/util";
 import type { EditExpenseDialogProps } from "@/type/component";
+import { editExpense } from "@/lib/api/expenses";
 
 export function EditExpenseDialog({ data, refetch }: EditExpenseDialogProps) {
   const [open, setOpen] = useState(false);
 
-  const form = useForm<
-    z.input<typeof addNewExpenseFormSchema>,
-    unknown,
-    z.output<typeof addNewExpenseFormSchema>
-  >({
+  const form = useForm<addNewExpenseFormType>({
     resolver: zodResolver(addNewExpenseFormSchema),
     defaultValues: {
       name: data.name,
@@ -47,11 +40,11 @@ export function EditExpenseDialog({ data, refetch }: EditExpenseDialogProps) {
   });
 
   const mutation = useMutation({
-    // When connecting a real API, pass `data.id` separately from the form values.
-    mutationFn: async (values: addNewExpenseFormType) => {
-      await sleep(3000);
-      return values;
-    },
+    mutationFn: (data2) =>
+      editExpense(data.id, {
+        ...data2,
+        price: Number(data.price),
+      }),
   });
 
   const onSubmit: SubmitHandler<addNewExpenseFormType> = async (values) => {

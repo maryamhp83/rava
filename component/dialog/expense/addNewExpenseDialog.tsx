@@ -27,8 +27,8 @@ import {
   addNewExpenseFormSchema,
   type addNewExpenseFormType,
 } from "@/lib/formSchema";
-import { sleep } from "@/lib/util";
 import type { DialogProps } from "@/type/component";
+import { createExpense } from "@/lib/api/expenses";
 
 export function AddNewExpenseDialog({ refetch }: DialogProps) {
   const [open, setOpen] = useState(false);
@@ -47,10 +47,11 @@ export function AddNewExpenseDialog({ refetch }: DialogProps) {
   });
 
   const mutation = useMutation({
-    mutationFn: async (data: addNewExpenseFormType) => {
-      await sleep(3000);
-      return data;
-    },
+    mutationFn: (data: addNewExpenseFormType) =>
+      createExpense({
+        ...data,
+        price: Number(data.price),
+      }),
   });
 
   const onSubmit: SubmitHandler<addNewExpenseFormType> = async (data) => {

@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { Loader2, Trash2 } from "lucide-react";
 import { toast } from "sonner";
-
 import {
   Dialog,
   DialogClose,
@@ -16,9 +15,8 @@ import {
   DialogTrigger,
 } from "@/component/ui/dialog";
 import { Button } from "@/component/ui/button";
-
-import { sleep } from "@/lib/util";
 import type { DeleteExpenseDialogProps } from "@/type/component";
+import { deleteExpense } from "@/lib/api/expenses";
 
 export function DeleteExpenseDialog({
   data,
@@ -27,9 +25,7 @@ export function DeleteExpenseDialog({
   const [open, setOpen] = useState(false);
 
   const mutation = useMutation({
-    mutationFn: async () => {
-      await sleep(3000);
-    },
+    mutationFn: async () => deleteExpense(data.id),
   });
 
   const onDelete = async () => {
