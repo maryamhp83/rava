@@ -23,7 +23,7 @@ import { useMutation } from "@tanstack/react-query";
 import { DialogProps } from "@/type/component";
 import { useState } from "react";
 import { toast } from "sonner";
-import { sleep } from "@/lib/util";
+import { createCustomer } from "@/lib/api/customers";
 
 export default function AddNewCustomerDialog({ refetch }: DialogProps) {
   const [open, onOpenChange] = useState(false);
@@ -38,7 +38,7 @@ export default function AddNewCustomerDialog({ refetch }: DialogProps) {
   });
 
   const mutation = useMutation({
-    mutationFn: (data: addNewCustomerFormType) => sleep(3000),
+    mutationFn: (data: addNewCustomerFormType) => createCustomer(data),
   });
 
   const onSubmit: SubmitHandler<addNewCustomerFormType> = async (data) => {

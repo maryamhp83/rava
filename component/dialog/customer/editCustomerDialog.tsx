@@ -23,7 +23,7 @@ import { useMutation } from "@tanstack/react-query";
 import { EditCustomerDialogProps } from "@/type/component";
 import { useState } from "react";
 import { toast } from "sonner";
-import { sleep } from "@/lib/util";
+import { editCustomer } from "@/lib/api/customers";
 
 export default function EditCustomerDialog({
   refetch,
@@ -37,7 +37,7 @@ export default function EditCustomerDialog({
   });
 
   const mutation = useMutation({
-    mutationFn: (data: addNewCustomerFormType) => sleep(3000),
+    mutationFn: (data2: addNewCustomerFormType) => editCustomer(data.id, data2),
   });
 
   const onSubmit: SubmitHandler<addNewCustomerFormType> = async (data) => {

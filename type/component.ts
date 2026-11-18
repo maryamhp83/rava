@@ -119,6 +119,7 @@ export interface FullNameBadgeProps {
 interface FilterableTableProps<T> {
   className?: string;
   data: T[];
+  refetch?: () => void;
 }
 
 export interface DialogProps {
@@ -129,6 +130,13 @@ export interface DialogProps {
 
 export interface ActionDialogProps<T> extends DialogProps {
   data: T;
+}
+
+export interface ApiLoaderProps {
+  children: ReactNode;
+  isLoading: boolean;
+  isError: boolean;
+  refetch?: () => void;
 }
 
 // -----------------------------------------------------------------------------------------

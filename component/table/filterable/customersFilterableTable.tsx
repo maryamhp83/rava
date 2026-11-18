@@ -29,6 +29,7 @@ import DeleteCustomerDialog from "@/component/dialog/customer/deleteCustomerDial
 export default function CustomersFilterableTable({
   data,
   className,
+  refetch,
 }: CustomersFilterableTableProps) {
   const [searchStr, setSearchStr] = useState("");
   const normalizedSearch = searchStr.trim().toLowerCase();
@@ -117,8 +118,8 @@ export default function CustomersFilterableTable({
                     {persianDateFormatter.format(new Date(item.createdAt))}
                   </TableCell>
                   <TableCell className="flex items-center justify-end gap-2">
-                    <EditCustomerDialog data={item} />
-                    <DeleteCustomerDialog data={item} />
+                    <EditCustomerDialog data={item} refetch={refetch} />
+                    <DeleteCustomerDialog data={item} refetch={refetch} />
                   </TableCell>
                 </TableRow>
               ))}

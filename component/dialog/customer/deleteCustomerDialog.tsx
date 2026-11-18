@@ -11,7 +11,7 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/component/ui/dialog";
-import { sleep } from "@/lib/util";
+import { deleteCustomer } from "@/lib/api/customers";
 import { DeleteCustomerDialogProps } from "@/type/component";
 import { useMutation } from "@tanstack/react-query";
 import { Loader2, Trash } from "lucide-react";
@@ -20,17 +20,18 @@ import { toast } from "sonner";
 
 export default function DeleteCustomerDialog({
   data,
+  refetch,
 }: DeleteCustomerDialogProps) {
   const [open, onOpenChange] = useState(false);
-
   const mutation = useMutation({
-    mutationFn: () => sleep(3000),
+    mutationFn: () => deleteCustomer(data.id),
     onSuccess: () => {
       toast.success("مشتری با موفقیت حذف شد", {
         description: `اطلاعات مشتری ${data.fullName} با موفقیت حذف شد.`,
       });
 
       onOpenChange(false);
+      refetch?.();
     },
     onError: () => {
       toast.error("حذف مشتری ناموفق بود", {
