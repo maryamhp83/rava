@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import MainLayout from "@/component/mainLayout";
-import StaticBreadCrumb from "@/component/staticBreadcrumb";
 import SettingsForm from "@/component/form/settingsForm";
+import PageInfoCard from "@/component/card/pageInfoCard";
 
 const title = "تنظیمات";
 
@@ -12,11 +12,11 @@ export const metadata: Metadata = {
 export default function MedicalRecordsPage() {
   return (
     <MainLayout>
-      <StaticBreadCrumb className="mb-5" values={["سپیدار", title]} />
-      <h1 className="font-bold text-xl truncate mb-1">{title}</h1>
-      <span className="font-normal text-sm text-muted-foreground block mb-8">
-        مدیریت تنظیمات سامانه،
-      </span>
+      <PageInfoCard
+        title={title}
+        subTitle="مدیریت تنظیمات سامانه،"
+        className="mb-8"
+      />
       <SettingsForm />
     </MainLayout>
   );

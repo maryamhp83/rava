@@ -3,6 +3,7 @@ import {
   verifyIranianNationalId,
   isPhoneNumberValid,
 } from "@persian-tools/persian-tools";
+import { formatPersianNumber } from "./number";
 
 export const loginFormSchema = z.object({
   email: z
@@ -132,6 +133,36 @@ export const addNewDriverFormSchema = z.object({
   }),
 });
 
+export const addNewTripFormSchema = z.object({
+  fullName: z
+    .string()
+    .trim()
+    .min(1, "نام مسافر الزامی است.")
+    .min(3, "نام مسافر باید حداقل ۳ کاراکتر باشد."),
+
+  driverFullName: z
+    .string()
+    .trim()
+    .min(1, "نام راننده الزامی است.")
+    .min(3, "نام راننده باید حداقل ۳ کاراکتر باشد."),
+
+  price: z
+    .string()
+    .min(0, { message: "مبلغ سفر الزامی است." })
+    .refine((value) => Number(value) > 1000, {
+      message: `مبلغ سفر باید بیشتر از ${formatPersianNumber(1000)} باشد.`,
+    }),
+  route: z
+    .string()
+    .trim()
+    .min(1, "مسیر سفر الزامی است.")
+    .min(3, "مسیر سفر باید حداقل ۳ کاراکتر باشد.")
+    .max(200, "مسیر سفر نمی‌تواند بیشتر از ۲۰۰ کاراکتر باشد."),
+
+  status: z.enum(["done", "pending", "cancled"]),
+});
+
+export type addNewTripFormType = z.infer<typeof addNewTripFormSchema>;
 export type addNewDriverFormType = z.infer<typeof addNewDriverFormSchema>;
 export type signupFormType = z.infer<typeof signupFormSchema>;
 export type addNewCustomerFormType = z.infer<typeof addNewCustomerFormSchema>;
