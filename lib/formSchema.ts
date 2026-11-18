@@ -85,6 +85,54 @@ export const addNewCustomerFormSchema = z.object({
     .max(300, "آدرس نمی‌تواند بیشتر از ۳۰۰ کاراکتر باشد."),
 });
 
+export const addNewDriverFormSchema = z.object({
+  fullName: z
+    .string()
+    .min(1, "نام و نام خانوادگی الزامی است.")
+    .min(3, "نام و نام خانوادگی باید حداقل ۳ کاراکتر باشد."),
+
+  nationalCode: z
+    .string()
+    .min(1, "کد ملی الزامی است.")
+    .refine(
+      (value) => verifyIranianNationalId(value),
+      "کد ملی وارد شده معتبر نیست.",
+    ),
+
+  phoneNumber: z
+    .string()
+    .min(1, "شماره تلفن الزامی است.")
+    .refine(
+      (value) => isPhoneNumberValid(value),
+      "شماره تلفن وارد شده معتبر نیست.",
+    ),
+
+  address: z
+    .string()
+    .trim()
+    .min(10, "آدرس باید حداقل ۱۰ کاراکتر باشد.")
+    .max(300, "آدرس نمی‌تواند بیشتر از ۳۰۰ کاراکتر باشد."),
+
+  licensePlate: z
+    .string()
+    .trim()
+    .min(1, "پلاک خودرو الزامی است.")
+    .min(5, "پلاک خودرو معتبر نیست.")
+    .max(15, "پلاک خودرو نمی‌تواند بیشتر از ۱۵ کاراکتر باشد."),
+
+  car: z
+    .string()
+    .trim()
+    .min(1, "مدل خودرو الزامی است.")
+    .min(2, "مدل خودرو باید حداقل ۲ کاراکتر باشد.")
+    .max(100, "مدل خودرو نمی‌تواند بیشتر از ۱۰۰ کاراکتر باشد."),
+
+  status: z.enum(["active", "deactive"], {
+    error: "وضعیت راننده الزامی است.",
+  }),
+});
+
+export type addNewDriverFormType = z.infer<typeof addNewDriverFormSchema>;
 export type signupFormType = z.infer<typeof signupFormSchema>;
 export type addNewCustomerFormType = z.infer<typeof addNewCustomerFormSchema>;
 export type loginFormType = z.infer<typeof loginFormSchema>;

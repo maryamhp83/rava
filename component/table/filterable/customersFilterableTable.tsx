@@ -24,6 +24,7 @@ import {
 import FullNameBadge from "@/component/fullNameBadge";
 import { persianDateFormatter } from "@/lib/date";
 import EditCustomerDialog from "@/component/dialog/customer/editCustomerDialog";
+import DeleteCustomerDialog from "@/component/dialog/customer/deleteCustomerDialog";
 
 export default function CustomersFilterableTable({
   data,
@@ -117,6 +118,7 @@ export default function CustomersFilterableTable({
                   </TableCell>
                   <TableCell className="flex items-center justify-end gap-2">
                     <EditCustomerDialog data={item} />
+                    <DeleteCustomerDialog data={item} />
                   </TableCell>
                 </TableRow>
               ))}
